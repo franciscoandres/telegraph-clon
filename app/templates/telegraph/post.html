@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>{{ post.title }}</h1>
+	<p class="muted">{{ post.author }} - {{ post.create_at }}</p>
+	<div class="lead-copy">
+		<p>{{ post.content }}</p>
+	</div>
+{% endblock %}
