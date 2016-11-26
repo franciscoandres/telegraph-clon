@@ -5,6 +5,7 @@ class Post(db.Model):
 	__tablename__ = "post"
 
 	id        = db.Column(db.Integer, primary_key = True)
+	slug      = db.Column(db.String(256), nullable = False)
 	title     = db.Column(db.String(256), nullable = False)
 	author    = db.Column(db.String(128), nullable = False)
 	create_at = db.Column(db.DateTime(), default = db.func.current_timestamp())
