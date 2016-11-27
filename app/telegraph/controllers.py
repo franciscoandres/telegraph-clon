@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 
+import app.utils as utils
+
 from app import db
 from app.telegraph.model import Post
 
@@ -17,6 +19,7 @@ def index():
 		post = Post(title, slug, author, content)
 		db.session.add(post)
 		db.session.commit()
+
 		return redirect(url_for("telegraph.get_post", slug = slug))
 
 	return render_template("telegraph/index.html")
