@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 
 import app.utils as utils
 
@@ -20,12 +20,28 @@ def index():
 		db.session.add(post)
 		db.session.commit()
 
+		session["edit"] = utils.generate_string()
+
 		return redirect(url_for("telegraph.get_post", slug = slug))
 
 	return render_template("telegraph/index.html")
 
-@telegraph.route("/<slug>")
+@telegraph.route("/<slug>/")
 def get_post(slug):
 	
 	post = Post.query.filter_by(slug = slug).first_or_404()
 	return render_template("telegraph/post.html", post = post)
+
+@telegraph.route("/<slug>/edit/", methods = ["POST", "GET"])
+def edit_post(slug):
+
+	post = Post.query.filter_by(slug = slug).first_or_404()
+
+	if request.method == "POST":
+		post.title   = request.form["title"]
+		post.author  = request.form["author"]
+		post.content = request.form["content"]
+		db.session.commit()
+		return redirect(url_for("telegraph.get_post", slug = slug))
+
+	return render_template("telegraph/edit.html", post = post)
