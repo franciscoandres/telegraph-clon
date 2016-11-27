@@ -1,17 +1,13 @@
-<form action="." method="POST">
+{% macro input(name, value="", type="text") %}
 	<div class="block pv2">
-		<label class="block tracked upper mb2" for="title">Title</label>
-		<input class="input p2 w-100" id="title" name="title" type="text">
+		<label class="block tracked upper mb2" for="{{ name }}">{{ name }}</label>
+		<input class="input p2 w-100" name="{{ name }}" id="{{ name }}" type="{{ type }}" value="{{ value | e }}">
 	</div>
+{% endmacro %}
+
+{% macro textarea(name, value="") %}
 	<div class="block pv2">
-		<label class="block tracked upper mb2" for="author">Author</label>
-		<input class="input p2 w-100" id="author" name="author" type="text">
+		<label class="block tracked upper mb2" for="{{ name }}">Content</label>
+		<textarea class="textarea p2 w-100" name="{{ name }}" id="{{ name }}" cols="30" rows="10">{{ value | e }}</textarea>
 	</div>
-	<div class="block pv2">
-		<label class="block tracked upper mb2" for="content">Content</label>
-		<textarea class="textarea p2 w-100" name="content" id="content" cols="30" rows="10"></textarea>
-	</div>
-	<div class="block">
-		<input class="button bg-blue ph3 pv2 white" type="submit" value="Publish">
-	</div>
-</form>
+{% endmacro %}
