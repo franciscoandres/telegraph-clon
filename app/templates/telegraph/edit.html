@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "partials/form.html" as form %}
+
+{% block title %} {{ post.title}} - Edit {% endblock %}
+
+{% block content %}
+<h1>Edit <span class="muted">{{post.title}}</span></h1>
+
+	<form action="." method="POST">
+		{{ form.input("title", post.title) }}
+		{{ form.input("author", post.author) }}
+		{{ form.textarea("content", post.content) }}
+		<div class="block">
+			<input class="button bg-blue ph3 pv2 white" type="submit" value="Publish">
+		</div>				
+	</form>
+	
+{% endblock %}
