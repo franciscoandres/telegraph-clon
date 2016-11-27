@@ -16,6 +16,12 @@ Work to do:
 * High
 	* Validate fields
 	* Allow edit post
+	* Improve editor
 
 * Medium
-	* Improve date time to final user
+	* ~~Improve date time to final user~~
+	* ~~404 Error page~~
+	
+* Low
+	* Improve home page UI
+	* Improve single post UI
