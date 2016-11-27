@@ -15,12 +15,14 @@ Work to do:
 
 * High
 	* Validate fields
-	* Allow edit post
+	* ~~Allow edit post~~
+	* Set user sessions
 	* Improve editor
 
 * Medium
 	* ~~Improve date time to final user~~
 	* ~~404 Error page~~
+	* ~~Improve forms in development~~
 	
 * Low
 	* Improve home page UI
