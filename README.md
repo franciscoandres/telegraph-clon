@@ -9,6 +9,7 @@ This a WIP telegraph clon. No more. This is my attempt to learn Python. Read mor
 At the moment, you can:
 
 * Publish post
+* Edit post
 * Get post by link
 
 Work to do:
@@ -16,7 +17,7 @@ Work to do:
 * High
 	* ~~Validate fields~~
 	* ~~Allow edit post~~
-	* Set user sessions
+	* Edit post if you create it (some confusing)
 	* Improve editor
 
 * Medium
