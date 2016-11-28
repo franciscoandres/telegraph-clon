@@ -1,13 +1,27 @@
-{% macro input(name, value="", type="text") %}
+{% macro input(field) %}
 	<div class="block pv2">
-		<label class="block tracked upper mb2" for="{{ name }}">{{ name }}</label>
-		<input class="input p2 w-100" name="{{ name }}" id="{{ name }}" type="{{ type }}" value="{{ value | e }}">
+		{{ field.label(class_="block tracked upper mb2") }}
+		{{ field(class_="input p2 w-100") }}
+		{% if field.errors %}
+			{% for error in field.errors %}
+				<ul class="list-none pl0">
+					<li class="red">{{ error }}</li>
+				</ul>
+			{% endfor %}
+		{% endif %}
 	</div>
 {% endmacro %}
 
-{% macro textarea(name, value="") %}
-	<div class="block pv2">
-		<label class="block tracked upper mb2" for="{{ name }}">Content</label>
-		<textarea class="textarea p2 w-100" name="{{ name }}" id="{{ name }}" cols="30" rows="10">{{ value | e }}</textarea>
-	</div>
+{% macro textarea(field) %}
+<div class="block pv2">
+	{{ field.label(class_="block tracked upper mb2") }}
+	{{ field(class_="input p2 w-100", rows="10") }}
+	{% if field.errors %}
+		{% for error in field.errors %}
+			<ul class="list-none pl0">
+				<li class="red">{{ error }}</li>
+			</ul>
+		{% endfor %}
+	{% endif %}
+</div>
 {% endmacro %}
