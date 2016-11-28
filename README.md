@@ -14,7 +14,7 @@ At the moment, you can:
 Work to do:
 
 * High
-	* Validate fields
+	* ~~Validate fields~~
 	* ~~Allow edit post~~
 	* Set user sessions
 	* Improve editor
