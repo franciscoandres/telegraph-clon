@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "partials/form.html" as form %}
+
+{% block content %}
+	<h1>Telegraph</h1>
+	
+	<form action="." method="POST">
+		{{ form.input("title") }}
+		{{ form.input("author") }}
+		{{ form.textarea("content") }}
+		<div class="block">
+			<input class="button bg-black ph3 pv2 white" type="submit" value="Publish">
+		</div>				
+	</form>
+	
+{% endblock %}

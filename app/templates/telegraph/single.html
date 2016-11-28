@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+	<a class="link b-wide b-all p2 black rad4 tracked upper mt2 inline-block" href="{{ url_for('telegraph.edit_post', slug = post.slug) }}">Edit</a>
+	<article>
+		<h1 class="order-2 f4 f2-s f2-l lead-title">{{ post.title }}</h1>
+		<p class="muted">{{ post.author }} - {{ post.create_at.strftime('%B %d, %Y') }}</p>
+		<div class="lead-copy">
+			<p>{{ post.content }}</p>
+		</div>
+	</article>
+{% endblock %}
