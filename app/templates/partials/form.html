@@ -1,7 +1,7 @@
-{% macro input(field) %}
+{% macro input(field, value = "") %}
 	<div class="block pv2">
 		{{ field.label(class_="block tracked upper mb2") }}
-		{{ field(class_="input p2 w-100") }}
+		{{ field(class_="input p2 w-100", value=value ) }}
 		{% if field.errors %}
 			{% for error in field.errors %}
 				<ul class="list-none pl0">
@@ -12,10 +12,11 @@
 	</div>
 {% endmacro %}
 
-{% macro textarea(field) %}
+{% macro textarea(field, value = "") %}
 <div class="block pv2">
 	{{ field.label(class_="block tracked upper mb2") }}
-	{{ field(class_="input p2 w-100", rows="10") }}
+	<!-- wtf i do not understand how textarea works in wtforms... :| -->
+	<textarea class="textarea w-100 p2" name="content" rows="10" cols="35">{{ value }}</textarea>
 	{% if field.errors %}
 		{% for error in field.errors %}
 			<ul class="list-none pl0">
