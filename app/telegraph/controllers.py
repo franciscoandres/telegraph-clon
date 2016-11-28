@@ -35,13 +35,15 @@ def get_post(slug):
 @telegraph.route("/<slug>/edit/", methods = ["POST", "GET"])
 def edit_post(slug):
 
+	form = PostForm(request.form)
+
 	post = Post.query.filter_by(slug = slug).first_or_404()
 
-	if request.method == "POST":
-		post.title   = request.form["title"]
-		post.author  = request.form["author"]
-		post.content = request.form["content"]
+	if form.validate_on_submit():
+		post.title   = form.title.data
+		post.author  = form.author.data
+		post.content = form.content.data
 		db.session.commit()
 		return redirect(url_for("telegraph.get_post", slug = slug))
 
-	return render_template("telegraph/edit.html", post = post)
+	return render_template("telegraph/edit.html", post = post, form = form)
