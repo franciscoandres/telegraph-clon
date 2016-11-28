@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for
 
 import app.utils as utils
 
 from app import db
+from app.telegraph.forms import PostForm
 from app.telegraph.model import Post
 
 telegraph = Blueprint("telegraph", __name__)
@@ -10,11 +11,13 @@ telegraph = Blueprint("telegraph", __name__)
 @telegraph.route("/", methods = ["POST", "GET"])
 def new_post():
 
-	if request.method == "POST":
-		title      = request.form["title"]
-		slug       = title.lower().strip().replace(" ", "-")
-		author     = request.form["author"]
-		content    = request.form["content"]
+	form = PostForm(request.form)
+
+	if form.validate_on_submit():
+		title   = form.title.data
+		slug    = title.lower().strip().replace(" ", "-")
+		author  = form.author.data
+		content = form.content.data
 
 		post = Post(title, slug, author, content)
 		db.session.add(post)
@@ -22,7 +25,7 @@ def new_post():
 
 		return redirect(url_for("telegraph.get_post", slug = slug))
 
-	return render_template("telegraph/new.html")
+	return render_template("telegraph/new.html", form = form)
 
 @telegraph.route("/<slug>/")
 def get_post(slug):
